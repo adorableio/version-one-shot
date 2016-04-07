@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "VersionOne-Shot",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Make VersionOne more adorable",
+    "description": "The description of the application"
+  }
+}

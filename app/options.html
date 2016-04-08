@@ -10,10 +10,26 @@
     <!-- endbuild -->
   </head>
   <body>
-    <h1>'Allo, 'Allo!</h1>
+    <h1>Make VersionOne more adorable</h1>
+
+    <label>
+      <strong>Columns to hide</strong><br />
+      <input type="text" id="columns"> (i.e. 133, 152)
+    </label>
+
+    <label>
+      <p>
+        <strong>Epics to hide</strong><br />
+        <input type="text" id="epics"> (i.e. 197429, 207470)
+      </p>
+    </label>
+
+    <div id="status"></div>
+    <button id="save">Save</button>
 
     <!-- build:js scripts/options-vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

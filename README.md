@@ -4,7 +4,7 @@ Make VersionOne more adorable.
 
 ## What is VersionOne-Shot?
 
-For a client project we use [VersionOne](http://www.versionone.com) which has a ton of functionality that is useful for their organization but, is not necessary in our day to day usage of the tool. We found that limiting the *columns* displayed and removing stories related to *epics* we were not working on provided a much better view of the work in front of us.
+For a client project we use [VersionOne](http://www.versionone.com) which has a ton of functionality that is useful for their organization, but is not necessary in our day to day usage of the tool. We found that limiting the *columns* displayed and removing stories related to *epics* we were not working on provided a much better view of the work in front of us.
 
 Additionally, when viewing an individual card we cleaned-up the padding and whitespace to make it easier to see the information most relevant to us.
 

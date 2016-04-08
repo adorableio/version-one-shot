@@ -10,7 +10,6 @@ function one_shot() {
   prettify_card_details();
   remove_columns();
   remove_epics();
-
 }
 
 function prettify_card_details() {

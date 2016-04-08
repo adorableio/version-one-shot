@@ -23,7 +23,7 @@ Additionally, when viewing an individual card we cleaned-up the padding and whit
 
 ### Usage
 
-#### Hide a column
+#### Hide a Column
 1. Right-click on the header of the column you would like to remove.
 2. Find the `data-token` value (i.e. StoryStatus1065) and note the number on the end
 3. Open the (Chrome Extensions page)[chrome://extensions/]
@@ -32,7 +32,7 @@ Additionally, when viewing an individual card we cleaned-up the padding and whit
 6. Click `Save`
 7. Reload your project in VersionOne.
 
-#### Hide a column
+#### Hide an Epic
 1. Right-click on the bottom tab on an Epic you would like to remove.
 2. Find the `rel` value (i.e. Epic:208545) and note the number on the end
 3. Open the (Chrome Extensions page)[chrome://extensions/]

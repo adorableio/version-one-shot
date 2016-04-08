@@ -7,6 +7,13 @@ document.onkeypress = function(e) {
 };
 
 function one_shot() {
+  prettify_card_details();
+  remove_columns();
+  remove_epics();
+
+}
+
+function prettify_card_details() {
   // prettify card details
   $('.fields .custom-fields .group, .expander, .collapser').hide();
   $('.collapsed-text').css({
@@ -14,24 +21,36 @@ function one_shot() {
     'font-size': '1.25em',
     'margin': '0.5em'
   });
+}
 
-  // hide tappr
-  $('a[rel=\'Epic:197443\'], a[rel=\'Epic:207470\']').each(function(idx, el) {
-    $(el.parentNode.parentNode).hide();
-  });
+function remove_column(header_token, colid) {
+  let headers = document.querySelectorAll(`[data-token='${header_token}']`),
+      column  = document.querySelector(`[colid='${colid}']`);
+  Array.from(headers).forEach(function(h) { h.remove(); });
+  column.remove();
+}
 
-  // remove columns
-  [1057, 137, 1063].forEach(function(number) {
+function remove_columns() {
+  let column_collection = [1057, 137, 1063]
+
+  column_collection.forEach(function(number) {
     remove_column(`StoryStatus${number}`, `StoryStatus:${number}`);
   });
   remove_column('NULL', 'NULL');
+}
 
-  function remove_column(header_token, colid) {
-    let headers = document.querySelectorAll(`[data-token='${header_token}']`),
-        column  = document.querySelector(`[colid='${colid}']`);
-    Array.from(headers).forEach(function(h) { h.remove(); });
-    column.remove();
-  }
+
+function remove_epic(epic_token) {
+  let epics = document.querySelectorAll(`a[rel='${epic_token}']`)
+  Array.from(epics).forEach(function(e) { e.remove(); });
+}
+
+function remove_epics() {
+  let epic_collection = [197443, 207470]
+
+  epic_collection.forEach(function(number) {
+    remove_epic(`Epic:${number}`);
+  });
 }
 
 one_shot();

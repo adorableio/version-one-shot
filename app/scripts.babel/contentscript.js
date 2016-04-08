@@ -25,15 +25,20 @@ function prettify_card_details() {
 function remove_column(header_token, colid) {
   let headers = document.querySelectorAll(`[data-token='${header_token}']`),
       column  = document.querySelector(`[colid='${colid}']`);
-  Array.from(headers).forEach(function(h) { h.remove(); });
-  column.remove();
+  if (column !== null) {
+    Array.from(headers).forEach(function(h) { h.remove(); });
+    column.remove();
+  }
 }
 
 function remove_columns() {
-  let column_collection = [1057, 137, 1063]
+  chrome.storage.sync.get('columnsToHide', function(items) {
+    let column_collection = items.columnsToHide.split(',');
 
-  column_collection.forEach(function(number) {
-    remove_column(`StoryStatus${number}`, `StoryStatus:${number}`);
+    column_collection.forEach(function(number) {
+      number = number.trim();
+      remove_column(`StoryStatus${number}`, `StoryStatus:${number}`);
+    });
   });
   remove_column('NULL', 'NULL');
 }
@@ -41,14 +46,19 @@ function remove_columns() {
 
 function remove_epic(epic_token) {
   let epics = document.querySelectorAll(`a[rel='${epic_token}']`)
-  Array.from(epics).forEach(function(e) { e.parentNode.parentNode.remove(); });
+  Array.from(epics).forEach(function(e) {
+    e.parentNode.parentNode.remove();
+  });
 }
 
 function remove_epics() {
-  let epic_collection = [197443, 207470]
+  chrome.storage.sync.get('epicsToHide', function(items) {
+    let epic_collection = items.epicsToHide.split(',');
 
-  epic_collection.forEach(function(number) {
-    remove_epic(`Epic:${number}`);
+    epic_collection.forEach(function(number) {
+      number = number.trim();
+      remove_epic(`Epic:${number}`);
+    });
   });
 }
 

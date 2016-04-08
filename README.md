@@ -22,6 +22,10 @@ Additionally, when viewing an individual card we cleaned-up the padding and whit
 1. Navigate to the `/app` directory wherever you cloned the repository above.
 
 ### Usage
+It should *"just work"*. Load VersionOne and watch the columns and epics you configured get hidden **automagically**.
+
+#### Keyboard Shortcut
+The `v` key reruns the page enhancements.
 
 #### Hide a Column
 1. Right-click on the header of the column you would like to remove.

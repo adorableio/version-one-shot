@@ -22,25 +22,39 @@ function prettify_card_details() {
   });
 }
 
-function remove_column(header_token, colid) {
-  let headers = document.querySelectorAll(`[data-token='${header_token}']`),
-      column  = document.querySelector(`[colid='${colid}']`);
-  if (column !== null) {
-    Array.from(headers).forEach(function(h) { h.remove(); });
-    column.remove();
-  }
+function hide_columns(columns_list) {
+  let style = document.createElement('style');
+  style.tyle = 'text/css';
+  let formatted_targets = columns_list.map(function(col) {
+    return `[colid='${col.colid}'], [data-token='${col.data_token}']`;
+  }).join(', ');
+  let style_text = `
+    ${formatted_targets} {
+      display: none;
+    }
+  `;
+  style.innerHTML = style_text;
+  document.getElementsByTagName('head')[0].appendChild(style);
 }
 
 function remove_columns() {
   chrome.storage.sync.get('columnsToHide', function(items) {
     let column_collection = items.columnsToHide.split(',');
+    let none_column = {
+      data_token: 'NULL',
+      colid: 'NULL'
+    };
 
-    column_collection.forEach(function(number) {
+    let removal_targets = column_collection.map(function(number) {
       number = number.trim();
-      remove_column(`StoryStatus${number}`, `StoryStatus:${number}`);
-    });
+      return {
+        data_token: `StoryStatus${number}`,
+        colid: `StoryStatus:${number}`
+      };
+    }).concat(none_column);
+
+    hide_columns(removal_targets);
   });
-  remove_column('NULL', 'NULL');
 }
 
 

@@ -8,7 +8,7 @@ document.onkeypress = function(e) {
 
 function one_shot() {
   prettify_card_details();
-  remove_columns();
+  hide_columns();
   remove_epics();
 }
 
@@ -22,41 +22,32 @@ function prettify_card_details() {
   });
 }
 
-function hide_columns(columns_list) {
-  let style = document.createElement('style');
-  style.tyle = 'text/css';
-  let formatted_targets = columns_list.map(function(col) {
-    return `[colid='${col.colid}'], [data-token='${col.data_token}']`;
-  }).join(', ');
-  let style_text = `
-    ${formatted_targets} {
-      display: none;
-    }
-  `;
-  style.innerHTML = style_text;
-  document.getElementsByTagName('head')[0].appendChild(style);
-}
-
-function remove_columns() {
+function hide_columns() {
   chrome.storage.sync.get('columnsToHide', function(items) {
-    let column_collection = items.columnsToHide.split(',');
-    let none_column = {
-      data_token: 'NULL',
-      colid: 'NULL'
-    };
-
-    let removal_targets = column_collection.map(function(number) {
-      number = number.trim();
-      return {
-        data_token: `StoryStatus${number}`,
-        colid: `StoryStatus:${number}`
-      };
-    }).concat(none_column);
-
-    hide_columns(removal_targets);
+    let column_collection = items.columnsToHide.split(',')
+                            .map(function(i) { return i.trim(); });
+    let css = generate_column_hiding_css(column_collection);
+    add_css_to_document(css);
   });
 }
 
+function generate_column_hiding_css(column_collection) {
+  let css_selector = column_collection.map(function(number) {
+    return `[colid='StoryStatus:${number}'], [data-token='StoryStatus${number}']`;
+  }).concat(`[colid='NULL'], [data-token='NULL']`)
+  .join(', ');
+
+  return `
+  ${css_selector} {
+    display: none;
+  }`;
+}
+
+function add_css_to_document(css) {
+  let style = document.createElement('style');
+  style.innerHTML = css;
+  document.getElementsByTagName('head')[0].appendChild(style);
+}
 
 function remove_epic(epic_token) {
   let epics = document.querySelectorAll(`a[rel='${epic_token}']`)

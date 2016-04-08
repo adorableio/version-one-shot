@@ -41,7 +41,7 @@ function remove_columns() {
 
 function remove_epic(epic_token) {
   let epics = document.querySelectorAll(`a[rel='${epic_token}']`)
-  Array.from(epics).forEach(function(e) { e.remove(); });
+  Array.from(epics).forEach(function(e) { e.parentNode.parentNode.remove(); });
 }
 
 function remove_epics() {

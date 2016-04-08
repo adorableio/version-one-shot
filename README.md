@@ -12,8 +12,8 @@ Additionally, when viewing an individual card we cleaned-up the padding and whit
 1. Clone repository and `cd` into the directory
 1. Run the following:
   ```
-  npm install
-  bower install
+  npm install &&
+  bower install &&
   $(npm bin)/gulp build
   ```
 1. In Chrome, open the [Chrome Extensions page](chrome://extensions/)

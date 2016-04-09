@@ -13,13 +13,18 @@ function one_shot() {
 }
 
 function prettify_card_details() {
-  // prettify card details
-  $('.fields .custom-fields .group, .expander, .collapser').hide();
-  $('.collapsed-text').css({
-    'max-height': 'inherit',
-    'font-size': '1.25em',
-    'margin': '0.5em'
-  });
+  let details_css = `
+    .fields .custom-fields .group, .expander, .collapser {
+      display: none !important;
+    }
+
+    .collapsed-text {
+      max-height: inherit;
+      font-size: 1.25em;
+      margin: 0.5em;
+    }
+  `;
+  add_css_to_document(details_css);
 }
 
 function hide_columns() {

@@ -8,6 +8,12 @@ For a client project we use [VersionOne](http://www.versionone.com) which has a 
 
 Additionally, when viewing an individual card we cleaned-up the padding and whitespace to make it easier to see the information most relevant to us.
 
+### Dependecies
+
+* gulp
+* npm
+* node 4.0.0 or higher
+
 ### Setup
 1. Clone repository and `cd` into the directory
 1. Run the following:

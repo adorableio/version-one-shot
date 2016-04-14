@@ -18,10 +18,15 @@ function prettify_card_details() {
       display: none !important;
     }
 
-    .collapsed-text {
-      max-height: inherit;
-      font-size: 1.25em;
-      margin: 0.5em;
+    .collapsed-text, .expandable-text {
+      max-height: inherit !important;
+      font-size: 16px !important;
+      line-height: 1.4em !important;
+      margin: 0.5em !important;
+    }
+
+    .collapsed-text p, .expandable-text p {
+      margin-top: 1.2em;
     }
   `;
   add_css_to_document(details_css);

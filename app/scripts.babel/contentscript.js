@@ -8,8 +8,37 @@ document.onkeypress = function(e) {
 
 function one_shot() {
   prettify_card_details();
+  prettify_cards();
+  prettify_board();
   hide_columns();
   remove_epics();
+}
+
+function prettify_cards() {
+  let card_css = `
+    .number {
+      background-color: #00A9E0 !important;
+    }
+
+    .story-card {
+      box-shadow: none !important;
+      border: 1px solid #bbb !important;
+    }
+  `;
+  add_css_to_document(card_css);
+}
+
+function prettify_board() {
+  let board_css = `
+    td.status {
+      background-color: #ddd !important;
+    }
+
+    [gadget='GridFilter'] {
+      display: none !important;
+    }
+  `;
+  add_css_to_document(board_css);
 }
 
 function prettify_card_details() {
@@ -44,7 +73,7 @@ function hide_columns() {
 function generate_column_hiding_css(column_collection) {
   let css_selector = column_collection.map(function(number) {
     return `[colid='StoryStatus:${number}'], [data-token='StoryStatus${number}']`;
-  }).concat(`[colid='NULL'], [data-token='NULL']`)
+  }).concat('[colid=\'NULL\'], [data-token=\'NULL\']')
   .join(', ');
 
   return `

@@ -34,7 +34,16 @@ function prettify_board() {
       background-color: #ddd !important;
     }
 
-    [gadget='GridFilter'] {
+    #page-container .main-content-wrapper {
+      margin: 0;
+    }
+
+    [gadget='GridFilter'],
+    #top-bar,
+    .actions.config-btn,
+    .asset-tray,
+    .filters-and-reports,
+    .main-content-nav {
       display: none !important;
     }
   `;

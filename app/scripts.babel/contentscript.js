@@ -100,13 +100,17 @@ function add_css_to_document(css) {
 function remove_epic(epic_token) {
   let epics = document.querySelectorAll(`a[rel='${epic_token}']`)
   Array.from(epics).forEach(function(e) {
-    e.parentNode.parentNode.remove();
+    var node = e.parentNode.parentNode;
+    window.v1hiddenEpics.push(node);
+    node.style.display = 'none';
   });
 }
 
 function remove_epics() {
   chrome.storage.sync.get('epicsToHide', function(items) {
     let epic_collection = items.epicsToHide.split(',');
+
+    window.v1hiddenEpics = [];
 
     epic_collection.forEach(function(number) {
       number = number.trim();

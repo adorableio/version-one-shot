@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
   chrome.storage.sync.get({ hideEpicCards: true }, function(items) {
     hide_epics_checkbox.checked = items.hideEpicCards;
   });
-
 });
 
 document.getElementById('toggle-cards').addEventListener('change', function(e) {

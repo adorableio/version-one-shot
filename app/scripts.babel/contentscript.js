@@ -11,7 +11,7 @@ function one_shot() {
   prettify_cards();
   prettify_board();
   hide_columns();
-  hide_epics();
+  toggle_epic_cards();
 
   chrome.storage.onChanged.addListener(handle_storage_changes);
 }
@@ -136,10 +136,20 @@ function toggle_epics(hide) {
   }
 }
 
+function toggle_epic_cards() {
+  chrome.storage.sync.get({ hideEpicCards: true }, function(items) {
+    if (items.hideEpicCards) {
+      hide_epics();
+    } else {
+      show_epics();
+    }
+  });
+}
+
 function handle_storage_changes(changes) {
   for (var key in changes) {
     if (key === 'hideEpicCards') {
-      toggle_epics(changes[key].newValue);
+      toggle_epic_cards();
     }
   }
 }

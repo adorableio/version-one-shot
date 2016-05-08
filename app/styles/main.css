@@ -36,3 +36,8 @@ footer a:hover, footer a:active {
 .hidden {
   display: none;
 }
+
+#epics-container {
+  margin-top: 0.5em;
+  margin-left: 1em;
+}

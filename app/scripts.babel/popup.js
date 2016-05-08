@@ -1,6 +1,7 @@
 'use strict';
 
 var hide_epics_checkbox = document.getElementById('toggle-cards'),
+    epics_container =     document.getElementById('epics-container'),
     epics_list =          document.getElementById('epics-list'),
     status_message =      document.getElementById('status-message');
 
@@ -41,8 +42,8 @@ function toggle_epics_list(show_it) {
     chrome.storage.sync.get({ epicsToHide: '' }, function(items) {
       epics_list.value = items.epicsToHide;
     });
-    epics_list.classList.remove('hidden');
+    epics_container.classList.remove('hidden');
   } else {
-    epics_list.classList.add('hidden');
+    epics_container.classList.add('hidden');
   }
 }

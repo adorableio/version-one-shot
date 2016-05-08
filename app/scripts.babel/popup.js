@@ -24,8 +24,8 @@ document.getElementById('toggle-cards').addEventListener('change', function(e) {
 
 function toggle_epics_list(show_it) {
   if (show_it) {
-    chrome.storage.sync.get({ columnsToHide: '' }, function(items) {
-      epics_list.value = items.columnsToHide;
+    chrome.storage.sync.get({ epicsToHide: '' }, function(items) {
+      epics_list.value = items.epicsToHide;
     });
     epics_list.classList.remove('hidden');
   } else {

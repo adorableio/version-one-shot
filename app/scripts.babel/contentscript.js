@@ -142,7 +142,7 @@ function show_epics() {
 
 function handle_storage_changes(changes) {
   for (var key in changes) {
-    if (key === 'hideEpicCards') {
+    if (key === 'hideEpicCards' || key === 'epicsToHide') {
       toggle_epic_cards();
     }
   }

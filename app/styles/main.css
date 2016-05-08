@@ -41,3 +41,9 @@ footer a:hover, footer a:active {
   margin-top: 0.5em;
   margin-left: 1em;
 }
+
+#status-message {
+  margin-top: 1em;
+  font-size: 0.8em;
+  color: #f00;
+}

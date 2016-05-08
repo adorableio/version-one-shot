@@ -1,7 +1,8 @@
 'use strict';
 
 var hide_epics_checkbox = document.getElementById('toggle-cards'),
-    epics_list =          document.getElementById('epics-list');
+    epics_list =          document.getElementById('epics-list'),
+    status_message =      document.getElementById('status-message');
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -19,6 +20,19 @@ document.getElementById('toggle-cards').addEventListener('change', function(e) {
   toggle_epics_list(e.target.checked);
   chrome.storage.sync.set({
     'hideEpicCards': e.target.checked
+  });
+});
+
+document.getElementById('save-epics').addEventListener('click', function(e) {
+  e.preventDefault();
+
+  chrome.storage.sync.set({
+    epicsToHide: epics_list.value
+  }, function() {
+    status_message.textContent = 'Options saved.';
+    setTimeout(function() {
+      status_message.textContent = '';
+    }, 3000);
   });
 });
 

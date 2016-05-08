@@ -14,8 +14,13 @@
 
     <h1>VersionOne-Shot</h1>
 
-    <div class="options">
-      <label><input type="checkbox" id="toggle-cards"/> Hide epic cards</label>
+    <div id="options">
+
+      <div id="hide-epics-options">
+        <label><input type="checkbox" id="toggle-cards"/> Hide epic cards</label>
+        <input type="text" id="epics-list" class="hidden" placeholder="(i.e. 133, 152)"/>
+      </div>
+
     </div>
 
     <!-- build:js scripts/popup-vendor.js -->

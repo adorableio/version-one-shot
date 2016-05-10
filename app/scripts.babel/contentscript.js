@@ -11,7 +11,9 @@ function one_shot() {
   prettify_cards();
   prettify_board();
   hide_columns();
-  remove_epics();
+  toggle_epic_cards();
+
+  chrome.storage.onChanged.addListener(handle_storage_changes);
 }
 
 function prettify_cards() {
@@ -97,22 +99,53 @@ function add_css_to_document(css) {
   document.getElementsByTagName('head')[0].appendChild(style);
 }
 
-function remove_epic(epic_token) {
-  let epics = document.querySelectorAll(`a[rel='${epic_token}']`)
-  Array.from(epics).forEach(function(e) {
-    e.parentNode.parentNode.remove();
+function toggle_epic_cards() {
+  chrome.storage.sync.get({ hideEpicCards: true }, function(items) {
+    if (items.hideEpicCards) {
+      hide_epics();
+    } else {
+      show_epics();
+    }
   });
 }
 
-function remove_epics() {
+function hide_epics() {
   chrome.storage.sync.get('epicsToHide', function(items) {
     let epic_collection = items.epicsToHide.split(',');
 
+    window.v1hiddenEpics = [];
+
     epic_collection.forEach(function(number) {
       number = number.trim();
-      remove_epic(`Epic:${number}`);
+      hide_epic(`Epic:${number}`);
     });
   });
+}
+
+function hide_epic(epic_token) {
+  let epics = document.querySelectorAll(`a[rel='${epic_token}']`)
+  Array.from(epics).forEach(function(e) {
+    var node = e.parentNode.parentNode;
+    window.v1hiddenEpics.push(node);
+    node.style.display = 'none';
+  });
+}
+
+function show_epics() {
+  var hidden_epics = window.v1hiddenEpics || [],
+      node;
+
+  while (node = hidden_epics.pop()) {
+    node.style.display = '';
+  }
+}
+
+function handle_storage_changes(changes) {
+  for (var key in changes) {
+    if (key === 'hideEpicCards' || key === 'epicsToHide') {
+      toggle_epic_cards();
+    }
+  }
 }
 
 one_shot();

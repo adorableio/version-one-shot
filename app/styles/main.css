@@ -1,3 +1,49 @@
 body {
-  padding: 20px;
+  padding: 5px 20px 10px 20px;
+  width: 250px;
+  background: #efefef;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+h1 {
+  color: #00A9E0;
+  line-height: 1em;
+}
+
+footer {
+  font-size: 0.8em;
+  color: #777;
+  margin-top: 1em;
+  border-top: 1px solid white;
+}
+
+footer p {
+  margin-top: 20px;
+}
+
+footer a, footer a:visited {
+  color: #f88;
+  text-decoration: none;
+}
+
+footer a:hover, footer a:active {
+  color: #f55;
+}
+
+.hidden {
+  display: none;
+}
+
+#epics-container {
+  margin-top: 0.5em;
+  margin-left: 1em;
+}
+
+#status-message {
+  margin-top: 1em;
+  font-size: 0.8em;
+  color: #f00;
 }

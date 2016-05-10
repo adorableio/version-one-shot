@@ -11,8 +11,22 @@
     <!-- endbuild -->
   </head>
   <body>
-    <h1>Made with love by</h1>
-    <p><a href="http://adorable.io/?utm_source=chrome-extension&utm_campaign=version-one-shot" target="_blank">adorable.io</a></p>
+
+    <h1>VersionOne-Shot</h1>
+
+    <div id="options">
+
+      <div id="hide-epics-options">
+        <label><input type="checkbox" id="toggle-cards"/> Hide epic cards</label>
+        <div id="epics-container" class="hidden">
+          <input type="text" id="epics-list" placeholder="(e.g. 197429, 207470)"/>
+          <button id="save-epics">Save</button>
+        </div>
+      </div>
+
+      <div id="status-message"></div>
+
+    </div>
 
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
@@ -23,5 +37,10 @@
     <!-- build:js scripts/popup.js -->
     <script src="scripts/popup.js"></script>
     <!-- endbuild -->
+
+    <footer>
+      <p>Made with love by <a href="http://adorable.io/?utm_source=chrome-extension&utm_campaign=version-one-shot" target="_blank">adorable.io</a></p>
+    </footer>
+
   </body>
 </html>

@@ -18,7 +18,7 @@ function one_shot() {
 
 function prettify_cards() {
   let card_css = `
-    .number {
+    .identity .number {
       background-color: #00A9E0 !important;
     }
 

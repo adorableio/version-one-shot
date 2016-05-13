@@ -16,11 +16,19 @@
 
     <div id="options">
 
-      <div id="hide-epics-options">
+      <div id="hide-epics-options" class="control-group">
         <label><input type="checkbox" id="toggle-cards"/> Hide epic cards</label>
-        <div id="epics-container" class="hidden">
+        <div id="epics-container" class="hidden subcontrol">
           <input type="text" id="epics-list" placeholder="(e.g. 197429, 207470)"/>
           <button id="save-epics">Save</button>
+        </div>
+      </div>
+
+      <div id="hide-columns-options" class="control-group">
+        <label><input type="checkbox" id="toggle-columns"/> Hide columns</label>
+        <div id="columns-container" class="hidden subcontrol">
+          <input type="text" id="columns-list" placeholder="(e.g. 133, 152)"/>
+          <button id="save-columns">Save</button>
         </div>
       </div>
 

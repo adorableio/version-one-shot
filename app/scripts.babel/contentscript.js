@@ -10,7 +10,7 @@ function one_shot() {
   prettify_card_details();
   prettify_cards();
   prettify_board();
-  hide_columns();
+  toggle_columns();
   toggle_epic_cards();
 
   chrome.storage.onChanged.addListener(handle_storage_changes);
@@ -72,13 +72,28 @@ function prettify_card_details() {
   add_css_to_document(details_css);
 }
 
-function hide_columns() {
-  chrome.storage.sync.get('columnsToHide', function(items) {
-    let column_collection = items.columnsToHide.split(',')
-                            .map(function(i) { return i.trim(); });
-    let css = generate_column_hiding_css(column_collection);
-    add_css_to_document(css);
+function toggle_columns() {
+  chrome.storage.sync.get({ 'hideColumns': true }, function(items) {
+    if (items.hideColumns) {
+      hide_columns();
+    } else {
+      show_columns();
+    }
   });
+}
+
+function hide_columns() {
+  chrome.storage.sync.get({ 'columnsToHide': '' }, function(items) {
+    let column_collection = items.columnsToHide.split(',')
+      .map(function(i) { return i.trim(); });
+    let css = generate_column_hiding_css(column_collection);
+    window.v1_column_hiding_style_el = add_css_to_document(css);
+  });
+}
+
+function show_columns() {
+  var style_el = window.v1_column_hiding_style_el;
+  if (style_el) style_el.remove();
 }
 
 function generate_column_hiding_css(column_collection) {
@@ -97,10 +112,11 @@ function add_css_to_document(css) {
   let style = document.createElement('style');
   style.innerHTML = css;
   document.getElementsByTagName('head')[0].appendChild(style);
+  return style;
 }
 
 function toggle_epic_cards() {
-  chrome.storage.sync.get({ hideEpicCards: true }, function(items) {
+  chrome.storage.sync.get({ 'hideEpicCards': true }, function(items) {
     if (items.hideEpicCards) {
       hide_epics();
     } else {
@@ -144,6 +160,9 @@ function handle_storage_changes(changes) {
   for (var key in changes) {
     if (key === 'hideEpicCards' || key === 'epicsToHide') {
       toggle_epic_cards();
+    }
+    if (key === 'hideColumns' || key === 'columnsToHide') {
+      toggle_columns();
     }
   }
 }

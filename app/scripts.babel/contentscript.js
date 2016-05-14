@@ -84,12 +84,10 @@ function toggle_columns() {
 
 function hide_columns() {
   chrome.storage.sync.get({ 'columnsToHide': '' }, function(items) {
-    if (typeof items.columnsToHide != 'undefined') {
-      let column_collection = items.columnsToHide.split(',')
-        .map(function(i) { return i.trim(); });
-      let css = generate_column_hiding_css(column_collection);
-      window.v1_column_hiding_style_el = add_css_to_document(css);
-    }
+    let column_collection = items.columnsToHide.split(',')
+      .map(function(i) { return i.trim(); });
+    let css = generate_column_hiding_css(column_collection);
+    window.v1_column_hiding_style_el = add_css_to_document(css);
   });
 }
 

@@ -129,14 +129,15 @@ function toggle_epic_cards() {
 
 function hide_epics() {
   chrome.storage.sync.get('epicsToHide', function(items) {
-    let epic_collection = items.epicsToHide.split(',');
+    if (typeof items.epicsToHide != 'undefined') {
+      let epic_collection = items.epicsToHide.split(',');
+      window.v1hiddenEpics = [];
 
-    window.v1hiddenEpics = [];
-
-    epic_collection.forEach(function(number) {
-      number = number.trim();
-      hide_epic(`Epic:${number}`);
-    });
+      epic_collection.forEach(function(number) {
+        number = number.trim();
+        hide_epic(`Epic:${number}`);
+      });
+    }
   });
 }
 

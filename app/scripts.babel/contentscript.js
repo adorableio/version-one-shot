@@ -40,12 +40,19 @@ function prettify_board() {
       margin: 0;
     }
 
+    #top-search {
+      position: absolute;
+      padding: 20px 150px !important;
+    }
+
     [gadget='GridFilter'],
-    #top-bar,
+    a.logo,
     .actions.config-btn,
     .asset-tray,
     .filters-and-reports,
-    .main-content-nav {
+    .main-content-nav,
+    .top-bar-nav,
+    .utility-bar {
       display: none !important;
     }
   `;

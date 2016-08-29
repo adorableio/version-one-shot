@@ -93,14 +93,27 @@ function hide_columns() {
   chrome.storage.sync.get({ 'columnsToHide': '' }, function(items) {
     let column_collection = items.columnsToHide.split(',')
       .map(function(i) { return i.trim(); });
+
     let css = generate_column_hiding_css(column_collection);
     window.v1_column_hiding_style_el = add_css_to_document(css);
+
+    adjust_column_width_by(-column_collection.length);
   });
 }
 
 function show_columns() {
   var style_el = window.v1_column_hiding_style_el;
   if (style_el) style_el.remove();
+}
+
+function adjust_column_width_by(amount) {
+  let headers = document.querySelectorAll('tr.group-by-header td');
+  let current_num_cols = parseInt(headers[0].colSpan);
+
+  headers.forEach(function(h) {
+    // increase the magnitude by 1 because we auto-hide 1 unlisted column
+    h.colSpan = current_num_cols + amount + (amount < 0 ? -1 : +1);
+  });
 }
 
 function generate_column_hiding_css(column_collection) {

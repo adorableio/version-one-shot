@@ -53,6 +53,8 @@ The `v` key reruns the page enhancements.
 
 ### Building a Release for Chrome Web Store
 
+Note: This action requires membership in the [Google Group: Adorable VersionOne-Shot](https://groups.google.com/forum/#!members/adorable-versionone-shot) and a valid Google developer account ($5.00 registration fee).
+
 1. Bump the `version` in the `app/manifest.json` as necessary. Note that the build process will increase the version in the manifest of the output directory (`dist`).
 2. Run `ne gulp build`
 3. Note the version in the output directory (`dist/manifest.json`).

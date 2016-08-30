@@ -50,3 +50,11 @@ The `v` key reruns the page enhancements.
 5. Add the number from step 2 above to the **Epics to hide** comma-separated list.
 6. Click `Save`
 7. Reload your project in VersionOne.
+
+### Building a Release for Chrome Web Store
+
+1. Bump the `version` in the `app/manifest.json` as necessary. Note that the build process will increase the version in the manifest of the output directory (`dist`).
+2. Run `ne gulp build`
+3. Note the version in the output directory (`dist/manifest.json`).
+4. From the root directory run `zip -r releases/version-one-shot-0.0.5 dist`.
+5. Upload the result to the Chrome Web Store Developer Dashboard.

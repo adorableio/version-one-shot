@@ -58,5 +58,5 @@ Note: This action requires membership in the [Google Group: Adorable VersionOne-
 1. Bump the `version` in the `app/manifest.json` as necessary. Note that the build process will increase the version in the manifest of the output directory (`dist`).
 2. Run `ne gulp build`
 3. Note the version in the output directory (`dist/manifest.json`).
-4. From the root directory run `zip -r releases/version-one-shot-0.0.5 dist`.
+4. From the root directory run `zip -r releases/version-one-shot-0.0.5.zip dist`.
 5. Upload the result to the Chrome Web Store Developer Dashboard.

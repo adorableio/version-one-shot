@@ -73,7 +73,7 @@ function prettify_card_details() {
     }
 
     .collapsed-text p, .expandable-text p {
-      margin-top: 1.2em;
+      margin-top: 0.2em !important;
     }
   `;
   add_css_to_document(details_css);
